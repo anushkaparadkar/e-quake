@@ -4,7 +4,6 @@ import VueFire from 'vuefire'
 import 'vuetify/dist/vuetify.min.css'
 import App from './App'
 import router from './router'
-import { store } from './store'
 
 Vue.config.productionTip = false
 Vue.use(Vuetify)
@@ -14,7 +13,6 @@ Vue.use(VueFire)
 new Vue({
   el: '#app',
   router,
-  store,
   components: { App },
   template: '<App/>'
 })
