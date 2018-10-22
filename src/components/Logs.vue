@@ -2,7 +2,7 @@
   <div id="logs" class="text-xs-center">
     <v-data-table :headers="headers" :items="getLogs" hide-actions class="elevation-1">
       <template slot="items" slot-scope="props">
-        <td class="text-xs-center">{{ Date(props.item.time) }}</td>
+        <td class="text-xs-center">{{ new Date(props.item.time).toLocaleString() }}</td>
       </template>
     </v-data-table>
   </div>
@@ -28,6 +28,7 @@ export default {
     getLogs() {
       const ref = db.ref('feedings/')
       let self = this
+      self.logs = []
       // eslint-disable-next-line
       ref.on('value', function(snapshot) {
         const feedings = snapshot.val()
