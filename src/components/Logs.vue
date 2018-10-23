@@ -23,6 +23,8 @@ import axios from 'axios'
 export default {
   name: 'home',
   data: () => ({
+    min: -100,
+    max: 5,
     logs: [],
     headers: [
       {
@@ -59,11 +61,23 @@ export default {
   },
   // eslint-disable-next-line
   created() {
+    this.logs = []
     axios
       .get('https://api.thingspeak.com/channels/607146/feeds.json?results=15')
       .then(res => {
         const feeds = res.data.feeds
-        this.logs = feeds
+        feeds.forEach(feed => {
+          if (
+            feed.field1 < this.min ||
+            feed.field1 > this.max ||
+            feed.field2 < this.min ||
+            feed.field2 > this.max ||
+            feed.field3 < this.min ||
+            feed.field3 > this.max
+          ) {
+            this.logs.push(feed)
+          }
+        })
       })
       .catch(err => {
         console.log(err.message)
