@@ -9,8 +9,9 @@
           <img src="../assets/logo.png" alt="Doggy">
           <h1>E-Quake</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo doloribus eos libero consequatur voluptas. Corrupti reprehenderit animi, ex inventore atque ab qui consequuntur repudiandae nulla pariatur asperiores, consequatur dolorum totam deleniti provident quo sed minus labore natus sit aliquid tenetur eius soluta. Nisi sequi dolorum, delectus quam minus eveniet temporibus!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus ipsam eos repellat voluptatum repellendus voluptates sapiente inventore voluptatem nihil molestiae optio iste veritatis at fuga distinctio sit eaque expedita quibusdam eveniet, sint cupiditate in. Maiores neque cum quisquam, illo facere vitae unde suscipit quod placeat, nulla, reprehenderit quam consectetur cumque!
           </p>
+          <v-btn color="indigo white--text" :disabled="busy" large @click="alert">Alert!</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -23,6 +24,16 @@ export default {
   data: () => ({
     busy: false
   }),
-  methods: {}
+  methods: {
+    // eslint-disable-next-line
+    alert() {
+      this.busy = true
+      let self = this
+      // eslint-disable-next-line
+      setTimeout(function() {
+        self.busy = false
+      }, 3000)
+    }
+  }
 }
 </script>
