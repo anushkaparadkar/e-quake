@@ -4,11 +4,13 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-center">
           <v-alert :value="busy" type="info">
-            Feeding your pet. Thank you for using PetFeedr !
+            An Earthquake may be coming! Stay Safe!
           </v-alert>
           <img src="../assets/logo.png" alt="Doggy">
-          <h1>PetFeedr</h1>
-          <v-btn color="indigo white--text" :disabled="busy" large @click="feed">Feed Now!</v-btn>
+          <h1>E-Quake</h1>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo doloribus eos libero consequatur voluptas. Corrupti reprehenderit animi, ex inventore atque ab qui consequuntur repudiandae nulla pariatur asperiores, consequatur dolorum totam deleniti provident quo sed minus labore natus sit aliquid tenetur eius soluta. Nisi sequi dolorum, delectus quam minus eveniet temporibus!
+          </p>
         </v-flex>
       </v-layout>
     </v-container>
@@ -16,27 +18,11 @@
 </template>
 
 <script>
-import { db } from '../firebase.js'
 export default {
   name: 'home',
   data: () => ({
     busy: false
   }),
-  methods: {
-    // eslint-disable-next-line
-    feed() {
-      this.busy = true
-      // Firebase Call
-      const pf = db.ref('feeder/')
-      pf.set({
-        motor: true
-      })
-      let self = this
-      // eslint-disable-next-line
-      setTimeout(function() {
-        self.busy = false
-      }, 3000)
-    }
-  }
+  methods: {}
 }
 </script>

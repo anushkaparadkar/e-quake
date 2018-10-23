@@ -8,7 +8,7 @@
               <img src="./assets/logo.png">
             </v-list-tile-avatar>
             <v-list-tile-content>
-              <v-list-tile-title class="council-name">PetFeedr</v-list-tile-title>
+              <v-list-tile-title class="council-name">E-Quake</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -29,7 +29,7 @@
       <v-toolbar color="indigo darken-1" dark>
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <v-toolbar-title class="white--text main">
-          <router-link to="/">PetFeedr</router-link>
+          <router-link to="/">E-Quake</router-link>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -47,12 +47,12 @@
           <v-btn v-for="link in links" :key="link.name" color="white" :to="link.href" flat round>
             {{ link.name }}
           </v-btn>
-          <v-btn color="white" href="https://github.com/RyanDsilva/petfeeder" target="_blank" flat round>
+          <v-btn color="white" href="https://github.com/anushkaparadkar/e-quake" target="_blank" flat round>
             GitHub
           </v-btn>
           <v-flex indigo darken-1 py-3 text-xs-center white--text xs12>
             &copy;2018 —
-            <strong>Ryan Dsilva</strong>
+            <strong>Anushka Paradkar</strong>
           </v-flex>
         </v-layout>
       </v-footer>

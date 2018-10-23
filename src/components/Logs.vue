@@ -3,9 +3,12 @@
     <v-container>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-data-table :headers="headers" :items="getLogs" hide-actions class="elevation-1">
+          <v-data-table :headers="headers" :items="getData" hide-actions class="elevation-1">
             <template slot="items" slot-scope="props">
-              <td class="text-xs-center">{{ new Date(props.item.time).toLocaleString() }}</td>
+              <td class="text-xs-center">{{ new Date(props.item.created_at).toString() }}</td>
+              <td class="text-xs-center">{{ props.item.field1 }}</td>
+              <td class="text-xs-center">{{ props.item.field2 }}</td>
+              <td class="text-xs-center">{{ props.item.field3 }}</td>
             </template>
           </v-data-table>
         </v-flex>
@@ -15,41 +18,56 @@
 </template>
 
 <script>
-import { db } from '../firebase.js'
+import axios from 'axios'
+
 export default {
   name: 'home',
   data: () => ({
     logs: [],
     headers: [
       {
-        text: 'Time of Serving',
+        text: 'TimeStamp',
         align: 'center',
         sortable: false,
-        value: 'time'
+        value: 'created_at'
+      },
+      {
+        text: 'X',
+        align: 'center',
+        sortable: false,
+        value: 'field1'
+      },
+      {
+        text: 'Y',
+        align: 'center',
+        sortable: false,
+        value: 'field2'
+      },
+      {
+        text: 'Z',
+        align: 'center',
+        sortable: false,
+        value: 'field3'
       }
     ]
   }),
   computed: {
     // eslint-disable-next-line
-    getLogs() {
-      const ref = db.ref('feedings/')
-      let self = this
-      self.logs = []
-      // eslint-disable-next-line
-      ref.on('value', function(snapshot) {
-        const feedings = snapshot.val()
-        for (const feed in feedings) {
-          const log = {
-            time: feedings[feed]
-          }
-          self.logs.push(log)
-        }
-      })
+    getData() {
       return this.logs
     }
+  },
+  // eslint-disable-next-line
+  created() {
+    axios
+      .get('https://api.thingspeak.com/channels/607146/feeds.json?results=15')
+      .then(res => {
+        const feeds = res.data.feeds
+        this.logs = feeds
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
   }
 }
 </script>
-
-<style scoped>
-</style>
