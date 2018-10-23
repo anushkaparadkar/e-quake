@@ -28,7 +28,7 @@ export default {
       {
         text: 'TimeStamp',
         align: 'center',
-        sortable: false,
+        sortable: true,
         value: 'created_at'
       },
       {
